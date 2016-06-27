@@ -23,16 +23,15 @@ window.onload = function () {
 window.addEventListener("keydown", function(e) {
 //if ball enters goal, player gets 1 point
 
-
 var player           = document.getElementById('player');
 var home             = document.getElementById('home');
 var game             = document.getElementById('game')
 var ball             = document.getElementById('ball');
 var goal             = document.getElementById('goal')
-var start            = goal.style.left + "px"
+var start            = 90;
 var currentPosition  = parseInt(getComputedStyle(player).left);
 var ballPosition     = parseInt(getComputedStyle(ball).left);
-var end              = goal.style.left + goal.style.Width + "px"
+var end              = 220;
 var shot             = 0;
 
 
@@ -51,19 +50,21 @@ var shot             = 0;
 
 //ball moves toward goal 3 times 
 function animateDiv(){
-    var ballPositionX = ball.style.top + 'px';     
-    var ballPositionY = ball.style.left + 'px';
-    
-    var id = setInterval(frame, 10);
+    var ballPositionX = 0;
+    var ballPositionY = 50;
+       
+       var id = setInterval(frame, 10);
+
     function frame() {
-      if (ballPositionX == 230 || ballPositionY == 520) {
+      if (ballPositionX == 170 || ballPositionY == 240) {
         clearInterval(id);
       } else {
         ballPositionX++;
         ballPositionY++;
-        console.log(ball.style.left);
-        ball.style.top =  ballPositionX + 'px';
-        ball.style.left = ballPositionY + 'px';
+        console.log("Y = " + ballPositionY);
+        console.log("X = " + ballPositionX);
+        ball.style.top =  ballPositionY + 'px';
+        ball.style.left = ballPositionX + 'px';
       }
   }
     
@@ -93,6 +94,7 @@ if(currentPosition < end) {
 
 function moveLeft(){
 if(currentPosition > start) {
+  console.log()
     player.style.left = currentPosition - 5 + 'px';
   }
 }
