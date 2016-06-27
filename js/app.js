@@ -28,10 +28,10 @@ var home             = document.getElementById('home');
 var game             = document.getElementById('game')
 var ball             = document.getElementById('ball');
 var goal             = document.getElementById('goal')
-var start            = 90;
+var start            = 40; //43
 var currentPosition  = parseInt(getComputedStyle(player).left);
 var ballPosition     = parseInt(getComputedStyle(ball).left);
-var end              = 220;
+var end              = 220; //218
 var shot             = 0;
 
 
@@ -52,7 +52,7 @@ var shot             = 0;
 function animateDiv(){
     var ballPositionX = 0;
     var ballPositionY = 50;
-       
+    console.log(player.getAttribute(position));  
        var id = setInterval(frame, 10);
 
     function frame() {
@@ -88,13 +88,16 @@ function animateDiv(){
 //player can move right and left
 function moveRight(){
 if(currentPosition < end) {
+  console.log("move right");
+  console.log(currentPosition);
     player.style.left = currentPosition + 5 + 'px';
   }
 }
 
 function moveLeft(){
 if(currentPosition > start) {
-  console.log()
+  console.log("move left");
+  console.log(currentPosition);
     player.style.left = currentPosition - 5 + 'px';
   }
 }
