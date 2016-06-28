@@ -53,7 +53,6 @@ switch(e.keyCode) {
     player.setAttribute ("class", "show");
     ball.setAttribute ("class", "show");
     goal.setAttribute ("class", "show");
-    
     if(game.classList.contains('field') == true){
       threeShots();
     };
