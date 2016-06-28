@@ -1,29 +1,39 @@
 
 
 window.onload = function () {
-  console.log("timelineloaded")
-  var tl = new TimelineLite({paused: true})
+  console.log("PAGE LOADED")
 
-  tl.to(".home", .8, {
-       backgroundPosition: "-300px 0",
-       ease: SteppedEase.config(11)
-     });
-     tl.set(".home", {
-       backgroundPosition: "0 -300px"
-     });
-     tl.to(".home", .8, {
-       backgroundPosition: "-300px -30px",
-       ease: SteppedEase.config(11)
-     });
+  var animation = new TimelineLite({ repeat: -1, yoyo:true})
+   
+
+  animation.to(".home",10, {
+          backgroundPosition: "450px 0px",
+          ease: Linear.easeNone}, .5);
+  animation.restart();
+}
+  // var tl = new TimelineLite({paused: true})
+
+  // tl.to(".home", .8, {
+  //      backgroundPosition: "-300px 0",
+  //      ease: SteppedEase.config(11)
+  //    });
+  //    tl.set(".home", {
+  //      backgroundPosition: "0 -300px"
+  //    });
+  //    tl.to(".home", .8, {
+  //      backgroundPosition: "-300px -30px",
+  //      ease: SteppedEase.config(11)
+     // });
 
   // tl.from((".home"), .6, { backgroundPosition: "center 43em" }, { backgroundPosition: "center -26em", ease:Linear.easeOutStepped }, 0)
 
-}
+
 
 window.addEventListener("keydown", function(e) {
 //if ball enters goal, player loses 1 point
 //if baall hits player, player gains 1 point
 //only 3 shots
+console.log("EVENT LISTENER")
 
 
 var player           = document.getElementById('player');
@@ -165,5 +175,5 @@ function paddleCollision(){
   }else {
     console.log("game over!!!!")
   }
-}
+  }
 })

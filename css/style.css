@@ -11,10 +11,10 @@ body{
   width: 300px;
   height: 250px;
   background: url("../Phantom-Football_Title-v1.jpg"); 
-  background-position: center;
+/*  background-position: center;*/
  /* padding-left: 50%;
   padding-right: 20%;*/
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-color: #050505;
 /*  position: fixed;*/
   color: white;
