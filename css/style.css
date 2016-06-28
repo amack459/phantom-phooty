@@ -22,6 +22,10 @@ body{
   /*background-position: 100px 100px, 300px 200px, 300px 0px;*/
 }
 
+#game {
+  width: 300px;
+  height: 250px;
+}
 .field {
   width: 300px;
   height: 250px;
