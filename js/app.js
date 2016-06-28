@@ -3,31 +3,14 @@
 window.onload = function () {
   console.log("PAGE LOADED")
 
-  var animation = new TimelineLite({ repeat: -1, yoyo:true})
+  var animation = new TimelineMax({ repeat: -1})
    
 
-  animation.to(".home",10, {
+  animation.to(".home",5, {
           backgroundPosition: "450px 0px",
           ease: Linear.easeNone}, .5);
   animation.restart();
 }
-  // var tl = new TimelineLite({paused: true})
-
-  // tl.to(".home", .8, {
-  //      backgroundPosition: "-300px 0",
-  //      ease: SteppedEase.config(11)
-  //    });
-  //    tl.set(".home", {
-  //      backgroundPosition: "0 -300px"
-  //    });
-  //    tl.to(".home", .8, {
-  //      backgroundPosition: "-300px -30px",
-  //      ease: SteppedEase.config(11)
-     // });
-
-  // tl.from((".home"), .6, { backgroundPosition: "center 43em" }, { backgroundPosition: "center -26em", ease:Linear.easeOutStepped }, 0)
-
-
 
 window.addEventListener("keydown", function(e) {
 //if ball enters goal, player loses 1 point
@@ -43,16 +26,16 @@ var ball             = document.getElementById('ball');
 var goal             = document.getElementById('goal')
 var start            = 40; //43
 var currentPosition  = parseInt(getComputedStyle(player).left);
-// var ballPosition     = parseInt(getComputedStyle(ball).left);
 var end              = 220; //218
-// var shots            = 0;
 var x = field.offsetWidth - 150;
 var y = field.offsetHeight - 150;
-var randX = Math.floor(Math.random(x) * x);
-var randY = Math.floor(Math.random(y) * y);
+var randX         = Math.floor(Math.random(x) * x);
+var randY         = Math.floor(Math.random(y) * y);
 var ballPositionX = randX;
 var ballPositionY = randY;
 
+// var ballPosition  = parseInt(getComputedStyle(ball).left);
+// var shots            = 0;
 // console.log(field.offsetWidth)
 // console.log(player.offsetLeft)
 
