@@ -1,7 +1,7 @@
 
 
 window.onload = function () {
-  console.log("hello")
+  console.log("timelineloaded")
   var tl = new TimelineLite({paused: true})
 
   tl.to(".home", .8, {
@@ -21,7 +21,10 @@ window.onload = function () {
 }
 
 window.addEventListener("keydown", function(e) {
-//if ball enters goal, player gets 1 point
+//if ball enters goal, player loses 1 point
+//if baall hits player, player gains 1 point
+//only 3 shots
+
 
 var player           = document.getElementById('player');
 var home             = document.getElementsByClassName('home');
@@ -33,6 +36,16 @@ var currentPosition  = parseInt(getComputedStyle(player).left);
 // var ballPosition     = parseInt(getComputedStyle(ball).left);
 var end              = 220; //218
 var shots            = 0;
+var x = field.offsetWidth - 150;
+var y = field.offsetHeight - 150;
+var randX = Math.floor(Math.random(x) * x);
+var randY = Math.floor(Math.random(y) * y);
+var ballPositionX = randX;
+var ballPositionY = randY;
+
+console.log(player.offsetHeight);
+console.log(player.offsetWidth);
+
 
 
 // function newPosition(){
@@ -59,15 +72,14 @@ function threeShots() {
     }
 }
 
-//paddle collision
+// // paddle collision
 // function paddleCollision(){
 //   var points = 0;
-//   var ballPositionX;
-//   var ballPositionY;
 
 //   if(player.style.left === ballPositionX || ballPositionY){
 //     points++
 //     console.log("point scored")
+//     console.log(ballPositionX);
 //   }else if(player.style.left < ballPositionX || ballPositionY){
 //     points--
 //     console.log("point loss")
@@ -96,6 +108,7 @@ function animateDiv(){
     function frame() {
       if (ballPositionX == 170 || ballPositionY == 240) {
         clearInterval(id);
+        paddleCollision()
       } else {
         ballPositionX++;
         ballPositionY++;
@@ -122,32 +135,45 @@ function animateDiv(){
 //     return speed;
 // }
 
+// paddle collision
+function paddleCollision(){
+  var points = 0;
+  
+  if((currentPosition - 150) === ballPositionX){
+    console.log("point scored")
+    console.log(currentPosition + " =currentPosition paddleCollision");
+    console.log(ballPositionX + " =ballPositionX paddleCollision");
+    console.log(ballPositionY + " =ballPositionY paddleCollision");
+    console.log("points = " + points)
+    //75 = ballPositionY Max
+  }else if(currentPosition < ballPositionX || ballPositionY){
+    points--
+    console.log("point loss")
+    console.log("points = " + points)
+  }else {
+    console.log("game over!!!!")
+  }
+
+}
+
 
 //player can move right and left
 function moveRight(){
 if(currentPosition < end) {
   console.log("move right");
-  console.log(currentPosition);
+  console.log(currentPosition + "= currentPosition");
     player.style.left = currentPosition + 5 + 'px';
-    //collision
-  }else if(currentPosition === ballPositionX || ballPositionY){
-    points++
-    console.log("point scored")
   }
 }
 
 function moveLeft(){
 if(currentPosition > start) {
   console.log("move left");
-  console.log(currentPosition);
+  console.log("move left");
+  console.log(currentPosition + "= currentPosition");
     player.style.left = currentPosition - 5 + 'px';
-    //collision
-  }else if(currentPosition === ballPositionX || ballPositionY){
-    points++
-    console.log("point scored")
   }
 }
-
 
 //add player, ball and goal once home becomes field
 switch(e.keyCode) {
