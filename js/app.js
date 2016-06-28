@@ -5,14 +5,14 @@ window.onload = function () {
   var tl = new TimelineLite({paused: true})
 
   tl.to(".home", .8, {
-       backgroundPosition: "-3300px 0",
+       backgroundPosition: "-300px 0",
        ease: SteppedEase.config(11)
      });
      tl.set(".home", {
        backgroundPosition: "0 -300px"
      });
      tl.to(".home", .8, {
-       backgroundPosition: "-3300px -300px",
+       backgroundPosition: "-300px -30px",
        ease: SteppedEase.config(11)
      });
 
@@ -32,7 +32,7 @@ var start            = 40; //43
 var currentPosition  = parseInt(getComputedStyle(player).left);
 var ballPosition     = parseInt(getComputedStyle(ball).left);
 var end              = 220; //218
-var shot             = 0;
+var shots             = 0;
 
 
 // function newPosition(){
@@ -50,11 +50,20 @@ var shot             = 0;
 
 //ball moves toward goal 3 times 
 function animateDiv(){
-    var ballPositionX = 0;
-    var ballPositionY = 50;
-    console.log(player.getAttribute(position));  
-       var id = setInterval(frame, 10);
+  shots++
+  if(shots < 3) {
 
+    var x = [0,100,200,50,25];
+    var y = [150,250,0,0.5,2];
+
+    var randX = x[Math.floor(Math.random() * x.length)];
+    var randY = y[Math.floor(Math.random() * y.length)];
+
+    var ballPositionX = randX;
+    var ballPositionY = randY;
+    console.log(currentPosition);  
+    var id = setInterval(frame, 10);
+   
     function frame() {
       if (ballPositionX == 170 || ballPositionY == 240) {
         clearInterval(id);
@@ -66,7 +75,10 @@ function animateDiv(){
         ball.style.top =  ballPositionY + 'px';
         ball.style.left = ballPositionX + 'px';
       }
-  }
+    }
+  } 
+
+   
     
 };
 
