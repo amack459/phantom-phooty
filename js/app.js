@@ -29,9 +29,9 @@ var home             = document.getElementsByClassName('home');
 var field            = document.getElementById('game');
 var ball             = document.getElementById('ball');
 var goal             = document.getElementById('goal')
-var start            = 40; //43
+var start            = goal.offsetHeight
 var currentPosition  = parseInt(getComputedStyle(player).left);
-var end              = 220; //218
+var end              = goal.offsetWidth 
 var x = field.offsetWidth - 150;
 var y = field.offsetHeight - 150;
 var randX         = Math.floor(Math.random(x) * x);
@@ -39,6 +39,9 @@ var randY         = Math.floor(Math.random(y) * y);
 var ballPositionX = randX;
 var ballPositionY = randY;
 
+
+// console.log(start)
+// console.log(end)
 // var ballPosition  = parseInt(getComputedStyle(ball).left);
 // var shots            = 0;
 // console.log(field.offsetWidth)
@@ -115,8 +118,9 @@ function animateDiv(){
     function frame() {
       if (ballPositionX == field.offsetWidth-goal.offsetHeight || ballPositionY == field.offsetHeight-goal.offsetHeight) {
         clearInterval(id);
+        console.log("paddle hit")
         paddleCollision()
-      } else {
+      } else if (currentPosition === ballPositionX || ballPositionY) {
         ballPositionX ++;
         ballPositionY ++;
         // console.log("Y = " + ballPositionY);
@@ -139,14 +143,24 @@ function animateDiv(){
       }
   }
 
+  function winner() {
+    if(points == 1||2||3 && shots == 3) {
+      console.log("winner, winner chicken dinner! Game Over")
+    } else if (points == 0 && shots == 3){
+      console.log("looks like a tie. Game Over")
+    } else if (points == -1 || -2 || -3) {
+      console.log("you need a bit more practice, mate. Game Over")
+    }
+  }
+
 // paddle collision
 function paddleCollision(){
   var points = 0;
-  if((currentPosition -150) === ballPositionX || ballPositionY){
+  if(currentPosition === ballPositionX || ballPositionY){
     points += 1;
     console.log("point scored")
     console.log(currentPosition + " = paddlecurrentPosition paddleCollision");
-    // console.log(ballPositionX + " =ballPositionX paddleCollision");
+    console.log(ballPositionX + " =ballPositionX paddleCollision");
     // console.log(ballPositionY + " =ballPositionY paddleCollision");
     console.log("points = " + points)
     //75 = ballPositionY Max
