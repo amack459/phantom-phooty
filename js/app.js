@@ -63,6 +63,7 @@ switch(e.keyCode) {
     goal.setAttribute ("class", "show");
     if(game.classList.contains('field') == true){
       threeShots();
+      winner();
     };
   break;
   case 37:
@@ -82,6 +83,7 @@ switch(e.keyCode) {
 //player can move right and left
 function moveRight(){
 if(currentPosition < end) {
+  paddleCollision()
   console.log("move right");
   console.log(currentPosition + "= currentPosition");
     player.style.left = currentPosition + 5 + 'px';
@@ -90,6 +92,7 @@ if(currentPosition < end) {
 
 function moveLeft(){
 if(currentPosition > start) {
+  paddleCollision()
   console.log("move left");
   console.log(currentPosition + "= currentPosition");
     player.style.left = currentPosition - 5 + 'px';
@@ -118,8 +121,6 @@ function animateDiv(){
     function frame() {
       if (ballPositionX == field.offsetWidth-goal.offsetHeight || ballPositionY == field.offsetHeight-goal.offsetHeight) {
         clearInterval(id);
-        console.log("paddle hit")
-        paddleCollision()
       } else if (currentPosition === ballPositionX || ballPositionY) {
         ballPositionX ++;
         ballPositionY ++;
@@ -134,9 +135,11 @@ function animateDiv(){
 
   function threeShots() {
     var shots = 0
-    shots ++;
-    console.log(shots)
+  
+   
     if(shots <= 3){
+      shots ++;
+      console.log(shots)  
       animateDiv()
       }else{
         console.log("game over")
@@ -144,11 +147,13 @@ function animateDiv(){
   }
 
   function winner() {
-    if(points == 1||2||3 && shots == 3) {
+      var points = 0;
+    if(points == 1||2||3 && shots === 3) {
+      console.log(points)
       console.log("winner, winner chicken dinner! Game Over")
-    } else if (points == 0 && shots == 3){
+    } else if (points == 0 && shots === 3){
       console.log("looks like a tie. Game Over")
-    } else if (points == -1 || -2 || -3) {
+    } else if (points == -1 || -2 || -3 && shots === 3) {
       console.log("you need a bit more practice, mate. Game Over")
     }
   }
@@ -159,8 +164,8 @@ function paddleCollision(){
   if(currentPosition === ballPositionX || ballPositionY){
     points += 1;
     console.log("point scored")
-    console.log(currentPosition + " = paddlecurrentPosition paddleCollision");
-    console.log(ballPositionX + " =ballPositionX paddleCollision");
+    // console.log(currentPosition + " = paddlecurrentPosition paddleCollision");
+    // console.log(ballPositionX + " =ballPositionX paddleCollision");
     // console.log(ballPositionY + " =ballPositionY paddleCollision");
     console.log("points = " + points)
     //75 = ballPositionY Max
@@ -168,9 +173,9 @@ function paddleCollision(){
   }else if(currentPosition > ballPositionX){
     points -= 1;
     console.log("point loss")
-    console.log(currentPosition + " = paddlecurrentPosition paddleCollision");
-    console.log(ballPositionX + " =ballPositionX paddleCollision");
-    console.log(ballPositionY + " =ballPositionY paddleCollision");
+    // console.log(currentPosition + " = paddlecurrentPosition paddleCollision");
+    // console.log(ballPositionX + " =ballPositionX paddleCollision");
+    // console.log(ballPositionY + " =ballPositionY paddleCollision");
     console.log("points = " + points)
     return points
   }else {
