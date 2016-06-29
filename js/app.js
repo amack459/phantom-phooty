@@ -5,16 +5,21 @@ window.onload = function () {
 
   var animation = new TimelineMax({ repeat: -1})
    
+   animation.set(".home",{autoAlpha:1});
+   // animate CSS opacity to 1
+   animation.to(".home",4,{autoAlpha:0.9})
 
-  animation.to(".home",5, {
+  animation.to(".home",3.5, {
           backgroundPosition: "450px 0px",
-          ease: Linear.easeNone}, .5);
-  animation.restart();
+          ease: Linear.easeNone}, 0);
 }
 
 window.addEventListener("keydown", function(e) {
 //if ball enters goal, player loses 1 point
 //if baall hits player, player gains 1 point
+//if score equals 1,2 or 3 player wins
+//if score equals 0 player ties
+//if score equals -number player loses
 //only 3 shots
 console.log("EVENT LISTENER")
 
